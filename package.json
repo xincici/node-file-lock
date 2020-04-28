@@ -1,10 +1,14 @@
 {
   "name": "node-file-lock",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a file lock for multi process",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xincici/node-file-lock"
   },
   "author": "linye<linye1987@sina.com>",
   "license": "MIT"
