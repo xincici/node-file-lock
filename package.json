@@ -1,6 +1,6 @@
 {
   "name": "node-file-lock",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a file lock for multi process",
   "main": "index.js",
   "scripts": {
