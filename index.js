@@ -1,25 +1,29 @@
-const fs = require('fs');
+const { openSync, closeSync, ensureDirSync, removeSync } = require('fs-extra');
 const os = require('os');
 
 const { resolve } = require('path');
 
 const tmpdir = os.tmpdir();
+const lockdir = resolve(tmpdir, 'node-file-lock-dir');
+
+removeSync(lockdir);
+ensureDirSync(lockdir);
 
 class Locker {
-  constructor(filepath, duration) {
-    if (!filepath) throw new Error('need filepath param');
-    if (!filepath.startsWith('/')) {
-      filepath = resolve(tmpdir, filepath);
+  constructor(filename, duration) {
+    if (!filename) throw new Error('need filename param');
+    if (filename.includes('/')) {
+      filename = resolve(lockdir, filename.replace(/\//g, '_'));
     }
-    this.filepath = filepath;
-    this.fd = fs.openSync(this.filepath, 'wx+');
+    this.filename = filename;
+    this.fd = openSync(this.filename, 'wx+');
     if (duration) {
       setTimeout(this.unlock.bind(this), duration);
     }
   }
   unlock() {
-    fs.closeSync(this.fd);
-    fs.unlinkSync(this.filepath);
+    closeSync(this.fd);
+    removeSync(this.filename);
   }
 }
 

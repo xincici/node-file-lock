@@ -1,6 +1,6 @@
 {
   "name": "node-file-lock",
-  "version": "0.0.4",
+  "version": "0.1.1",
   "description": "a file lock for multi process",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,13 @@
     "type": "git",
     "url": "https://github.com/xincici/node-file-lock"
   },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "author": "linye<linye1987@sina.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^9.0.1"
+  }
 }
