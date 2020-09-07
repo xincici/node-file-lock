@@ -12,9 +12,7 @@ ensureDirSync(lockdir);
 class Locker {
   constructor(filename, duration) {
     if (!filename) throw new Error('need filename param');
-    if (filename.includes('/')) {
-      filename = resolve(lockdir, filename.replace(/\//g, '_'));
-    }
+    filename = resolve(lockdir, filename.replace(/\//g, '_'));
     this.filename = filename;
     this.fd = openSync(this.filename, 'wx+');
     if (duration) {
