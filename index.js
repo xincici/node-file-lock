@@ -20,8 +20,10 @@ class Locker {
     }
   }
   unlock() {
+    if (this.free) return;
     closeSync(this.fd);
     removeSync(this.filename);
+    this.free = true;
   }
 }
 
