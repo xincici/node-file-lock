@@ -14,6 +14,7 @@ class Locker {
     if (!filename) throw new Error('need filename param');
     filename = resolve(lockdir, filename.replace(/\//g, '_'));
     this.filename = filename;
+    ensureDirSync(lockdir);
     this.fd = openSync(this.filename, 'wx+');
     if (duration) {
       setTimeout(this.unlock.bind(this), duration);
